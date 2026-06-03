@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badis Mahjoubi | System Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- Three.js Canvas Background -->
+    <div id="canvas-container"></div>
+
+    <!-- Color theme indicator (bottom-right) -->
+    <div id="theme-indicator">
+        <span class="ti-label">SPACE — COLOR</span>
+        <div class="ti-dots" id="ti-dots"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass">
+        <div class="logo">BM<span style="color: var(--accent-color);">_</span>SYSTEMS</div>
+        <div class="nav-links">
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-right">
+            <span class="space-hint">[ SPACE ] COLOR</span>
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="BADIS MAHJOUBI">BADIS MAHJOUBI</h1>
+            <h2>System Engineer & Backend Architect</h2>
+            <p>Building scalable distributed systems and automation tools.</p>
+            <div class="cta-group">
+                <a href="#projects" class="btn-primary">View Projects</a>
+                <a href="https://github.com/Badis-tech" class="btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="glass-panel">
+        <h3 class="section-title">_ABOUT</h3>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm a software engineer who enjoys turning complex business problems into real, working products. I've built web applications for finance and manufacturing, focusing on systems that don't just look good—but actually scale and deliver value.
+                </p>
+                <p>
+                    I work across the full stack, from designing clean user interfaces to building solid backend architectures. A lot of my work revolves around ERP systems, secure authentication, and data-driven dashboards that help teams make better decisions.
+                </p>
+
+                <!-- Social links -->
+                <div class="about-links">
+                    <a href="https://linkedin.com/in/badismahjoubi" target="_blank" class="about-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://facebook.com/badis.mahjoubi" target="_blank" class="about-link">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://github.com/Badis-tech" target="_blank" class="about-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:badismahjoubi.dev@gmail.com" class="about-link">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="tel:+21600000000" class="about-link">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats — each one scrolls to #projects -->
+            <div class="stats">
+                <a href="#experience" class="stat-card">
+                    <span>2+</span>
+                    <small>Years Exp.</small>
+                </a>
+                <a href="#projects" class="stat-card">
+                    <span>10+</span>
+                    <small>Projects</small>
+                </a>
+                <a href="#experience" class="stat-card">
+                    <span>8%</span>
+                    <small>Perf Inc</small>
+                </a>
+                <a href="#projects" class="stat-card">
+                    <span>1</span>
+                    <small>Publications</small>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="glass-panel">
+        <h3 class="section-title">_EXPERIENCE</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - Present</div>
+                <h4>Developer</h4>
+                <h5>Moubeder dheti</h5>
+                <ul>
+                    <li>Designed a platform for home maintenance across Tunisia.</li>
+                    <li>Implemented payment processing functionality.</li>
+                    <li>Developed responsive user interfaces using modern web technologies.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">REACT</span><span class="tag">SUPABASE</span><span class="tag">Python</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - 2025</div>
+                <h4>Full-Stack Developer</h4>
+                <h5>Tontec Tunisia</h5>
+                <ul>
+                    <li>Designed enterprise ERP with integrated analytics dashboard.</li>
+                    <li>Implemented interactive visualization improving operational performance by 8%.</li>
+                    <li>Optimized Angular components and lazy loading strategies.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Angular</span><span class="tag">Spring Boot</span><span class="tag">Python</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023 - 2024</div>
+                <h4>Full-Stack Developer</h4>
+                <h5>CODIX Tunisia</h5>
+                <ul>
+                    <li>Developed factoring web application for invoice financing.</li>
+                    <li>Implemented OAuth 2.0 and JWT security protocols.</li>
+                    <li>Built scalable RESTful APIs for workflow automation.</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Angular</span><span class="tag">Spring Security</span><span class="tag">OAuth 2.0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="glass-panel">
+        <h3 class="section-title">_PROJECTS</h3>
+        <div class="project-grid">
+
+            <!-- Visa Hunter -->
+            <div class="card">
+                <div class="card-img">
+                    <!-- Replace src with your screenshot later -->
+                    <!-- <img src="imgs/visa-hunter.png" alt="Visa Hunter"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-search ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+                    <h4>Visa Hunter</h4>
+                    <p>Automated job aggregator scoring sponsorship probability using NLP.</p>
+                    <div class="card-links"><a href="https://github.com/Badis-tech/visa-hunter" target="_blank">View Code →</a></div>
+                </div>
+            </div>
+
+            <!-- PyBalancer -->
+            <div class="card">
+                <div class="card-img">
+                    <!-- <img src="imgs/pybalancer.png" alt="PyBalancer"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-network-wired ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">Asyncio</span><span class="tag">Sockets</span></div>
+                    <h4>PyBalancer</h4>
+                    <p>L4/L7 Load Balancer written in pure Python. Zero dependencies.</p>
+                    <div class="card-links"><a href="https://github.com/Badis-tech/pybalancer" target="_blank">View Code →</a></div>
+                </div>
+            </div>
+
+            <!-- Mini-Prometheus -->
+            <div class="card">
+                <div class="card-img">
+                    <!-- <img src="imgs/mini-prometheus.png" alt="Mini-Prometheus"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-chart-line ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">System</span><span class="tag">Monitoring</span></div>
+                    <h4>Mini-Prometheus</h4>
+                    <p>Observability agent harvesting OS metrics (CPU/RAM/Disk).</p>
+                    <div class="card-links"><a href="https://github.com/Badis-tech/mini-prometheus" target="_blank">View Code →</a></div>
+                </div>
+            </div>
+
+            <!-- ERP -->
+            <div class="card legacy">
+                <div class="card-img">
+                    <!-- <img src="imgs/erp.png" alt="ERP"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-building ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">Angular</span><span class="tag">Spring Boot</span></div>
+                    <h4>ERP Web Application</h4>
+                    <p>Enterprise resource planning system with analytics. Improved performance by 8%.</p>
+                </div>
+            </div>
+
+            <!-- Factoring -->
+            <div class="card legacy">
+                <div class="card-img">
+                    <!-- <img src="imgs/factoring.png" alt="Factoring Platform"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-file-invoice-dollar ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">Spring Security</span><span class="tag">OAuth 2.0</span></div>
+                    <h4>Factoring Platform</h4>
+                    <p>Invoice financing platform with secure authentication and workflow automation.</p>
+                </div>
+            </div>
+
+            <!-- Banking -->
+            <div class="card legacy">
+                <div class="card-img">
+                    <!-- <img src="imgs/banking.png" alt="Banking App"> -->
+                    <div class="card-img-placeholder">
+                        <i class="fas fa-university ph-icon"></i>
+                        <span class="ph-text">Add Screenshot</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-header"><span class="tag">MySQL</span><span class="tag">Security</span></div>
+                    <h4>Online Banking App</h4>
+                    <p>Secure digital banking platform with multi-layer authentication.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="glass-panel">
+        <h3 class="section-title">_CONTACT</h3>
+        <div class="contact-links">
+            <a href="mailto:badismahjoubi.dev@gmail.com" class="btn-primary"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://linkedin.com/in/badismahjoubi" target="_blank" class="btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>System Status: <span style="color: var(--accent-color);">Online</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

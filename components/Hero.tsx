@@ -1,7 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { site } from "@/lib/data";
+import { cv, site } from "@/lib/data";
+
+const HeroScene = dynamic(() => import("./three/HeroScene"), { ssr: false });
 
 const container = {
   hidden: {},
@@ -36,6 +39,17 @@ export default function Hero() {
         aria-hidden
         className="absolute left-1/2 top-1/3 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-accent/10 blur-[160px]"
       />
+
+      {/* 3D distributed-system network */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, delay: 0.4 }}
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <HeroScene />
+      </motion.div>
 
       <motion.div
         variants={container}
@@ -73,7 +87,7 @@ export default function Hero() {
             </h2>
             <p className="mt-2 text-muted">{site.tagline}</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
               className="rounded-full bg-accent px-7 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-bg transition-transform hover:scale-105"
@@ -88,6 +102,42 @@ export default function Hero() {
             >
               GitHub
             </a>
+            <div className="flex items-center overflow-hidden rounded-full border border-line font-mono text-sm uppercase tracking-wider">
+              <span className="flex items-center gap-2 py-3 pl-5 pr-3 text-muted">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                  aria-hidden
+                >
+                  <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+                </svg>
+                CV
+              </span>
+              <a
+                href={cv.en.href}
+                download
+                aria-label="Download CV in English (PDF)"
+                className="py-3 pl-2 pr-2 transition-colors hover:bg-accent/10 hover:text-accent"
+              >
+                {cv.en.label}
+              </a>
+              <span aria-hidden className="text-line">
+                /
+              </span>
+              <a
+                href={cv.fr.href}
+                download
+                aria-label="Télécharger le CV en français (PDF)"
+                className="py-3 pl-2 pr-5 transition-colors hover:bg-accent/10 hover:text-accent"
+              >
+                {cv.fr.label}
+              </a>
+            </div>
           </div>
         </motion.div>
       </motion.div>

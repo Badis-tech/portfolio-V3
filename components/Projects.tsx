@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { projects, type Project } from "@/lib/data";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
+import TiltCard from "./TiltCard";
 
 const icons: Record<Project["icon"], React.ReactNode> = {
   search: (
@@ -27,21 +27,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal>
       <article
-        className={`group grid items-stretch gap-8 lg:grid-cols-2 ${
+        className={`group grid items-stretch gap-8 [perspective:1200px] lg:grid-cols-2 ${
           reversed ? "lg:[direction:rtl]" : ""
         }`}
       >
-        {/* Visual */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl border border-line [direction:ltr]"
-          style={{
-            background: `radial-gradient(ellipse at 30% 20%, ${project.accent}22, transparent 60%), #0d0d0d`,
-          }}
-        >
+        {/* Visual — tilts in 3D toward the cursor */}
+        <TiltCard className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl border border-line [direction:ltr]">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at 30% 20%, ${project.accent}22, transparent 60%), #0d0d0d`,
+            }}
+          />
           <span
-            className="absolute left-6 top-5 font-mono text-sm"
+            className="absolute left-6 top-5 font-mono text-sm [transform:translateZ(40px)]"
             style={{ color: project.accent }}
           >
             {String(index + 1).padStart(2, "0")}
@@ -53,7 +53,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             strokeWidth="1.2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="h-28 w-28 opacity-80 transition-transform duration-500 group-hover:scale-110"
+            className="h-28 w-28 opacity-80 transition-transform duration-500 [transform:translateZ(60px)] group-hover:scale-110"
           >
             {icons[project.icon]}
           </svg>
@@ -62,7 +62,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full blur-[80px]"
             style={{ background: `${project.accent}33` }}
           />
-        </motion.div>
+        </TiltCard>
 
         {/* Text */}
         <div className="flex flex-col justify-center [direction:ltr]">

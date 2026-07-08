@@ -1,3 +1,8 @@
+export const cv = {
+  en: { href: "/cv/Badis-Mahjoubi-CV-EN.pdf", label: "EN" },
+  fr: { href: "/cv/Badis-Mahjoubi-CV-FR.pdf", label: "FR" },
+};
+
 export const site = {
   name: "Badis Mahjoubi",
   role: "System Engineer & Backend Architect",

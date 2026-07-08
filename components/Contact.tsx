@@ -1,4 +1,4 @@
-import { site } from "@/lib/data";
+import { cv, site } from "@/lib/data";
 import Reveal from "./Reveal";
 
 export default function Contact() {
@@ -30,6 +30,22 @@ export default function Contact() {
               className="rounded-full border border-line px-8 py-4 font-mono text-sm uppercase tracking-wider transition-colors hover:border-accent hover:text-accent"
             >
               LinkedIn
+            </a>
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-6 font-mono text-sm">
+            <a
+              href={cv.en.href}
+              download
+              className="text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+            >
+              ↓ Download CV (English)
+            </a>
+            <a
+              href={cv.fr.href}
+              download
+              className="text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+            >
+              ↓ Télécharger le CV (Français)
             </a>
           </div>
         </Reveal>

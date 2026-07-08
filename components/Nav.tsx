@@ -8,6 +8,7 @@ const links = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
+  { href: "/lobby", label: "Lobby" },
 ];
 
 export default function Nav() {

@@ -218,7 +218,7 @@ CONTACT_FR = (
 cv_en = {
     "pdf_title": "Badis Mahjoubi — Full-Stack & AI Developer — CV",
     "name": "BADIS MAHJOUBI",
-    "role": "Full-Stack Developer  |  Python & TypeScript  |  SaaS & Automation",
+    "role": "Full-Stack &amp; AI Developer  |  Software Engineer  |  Python &amp; TypeScript  |  SaaS &amp; Automation",
     "contact": CONTACT_EN,
     "section_profile": "Professional Summary",
     "profile": (
@@ -311,7 +311,7 @@ cv_en = {
 cv_fr = {
     "pdf_title": "Badis Mahjoubi — Développeur Full-Stack & IA — CV",
     "name": "BADIS MAHJOUBI",
-    "role": "Développeur Full-Stack  |  Python & TypeScript  |  SaaS & Automatisation",
+    "role": "Développeur Full-Stack &amp; IA  |  Ingénieur Logiciel  |  Python &amp; TypeScript  |  SaaS &amp; Automatisation",
     "contact": CONTACT_FR,
     "section_profile": "Résumé Professionnel",
     "profile": (

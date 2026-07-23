@@ -1,6 +1,7 @@
 "use client";
 
-import { projects, type Project } from "@/lib/data";
+import { projects, sectionTitles, type Project } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
 import TiltCard from "./TiltCard";
@@ -20,10 +21,19 @@ const icons: Record<Project["icon"], React.ReactNode> = {
     <path d="M7 3h10a2 2 0 012 2v16l-3-2-3 2-3-2-3 2V5a2 2 0 012-2zM9 8h6M9 12h6" />
   ),
   bank: <path d="M3 9l9-6 9 6M4 9v11m16-11v11M2 20h20M8 13v4m4-4v4m4-4v4" />,
+  bot: (
+    <path d="M12 2a1 1 0 011 1v1h2a3 3 0 013 3v2h1a1 1 0 110 2h-1v2a3 3 0 01-3 3h-1v3a1 1 0 11-2 0v-3h-1a3 3 0 01-3-3v-2H7a1 1 0 110-2h1V7a3 3 0 013-3h2V3a1 1 0 011-1zM9 9a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z" />
+  ),
+  mail: (
+    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  ),
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { locale } = useLocale();
   const reversed = index % 2 === 1;
+  const viewCodeLabel = locale === "fr" ? "Voir le code →" : "View code →";
+
   return (
     <Reveal>
       <article
@@ -89,7 +99,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noreferrer"
               className="mt-6 inline-flex w-fit items-center gap-2 font-mono text-sm uppercase tracking-wider text-accent transition-transform hover:translate-x-1"
             >
-              View code →
+              {viewCodeLabel}
             </a>
           )}
         </div>
@@ -99,14 +109,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects() {
+  const { locale } = useLocale();
+  const projectList = projects[locale];
+  const titles = sectionTitles[locale];
+
   return (
     <section
       id="projects"
       className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
     >
-      <SectionTitle index="03" title="Projects" />
+      <SectionTitle index="03" title={titles.projects} />
       <div className="space-y-24">
-        {projects.map((project, i) => (
+        {projectList.map((project, i) => (
           <ProjectCard key={project.title} project={project} index={i} />
         ))}
       </div>

@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { site } from "@/lib/data";
-
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-];
+import { site, navLinks, siteI18n } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 
 export default function Nav() {
+  const { locale, toggle } = useLocale();
+  const t = siteI18n[locale];
+  const links = navLinks[locale];
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -45,12 +43,20 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          {/* Language toggle */}
+          <button
+            onClick={toggle}
+            className="rounded-full border border-line px-3 py-1 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:border-accent hover:text-accent"
+            aria-label="Toggle language"
+          >
+            {locale === "en" ? "FR" : "EN"}
+          </button>
         </div>
         <a
           href={`mailto:${site.email}`}
           className="rounded-full border border-line px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:border-accent hover:text-accent"
         >
-          Get in touch
+          {t.contactCta}
         </a>
       </nav>
     </motion.header>

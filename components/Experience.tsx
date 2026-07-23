@@ -1,16 +1,23 @@
-import { experience } from "@/lib/data";
+"use client";
+
+import { experience, sectionTitles } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
 
 export default function Experience() {
+  const { locale } = useLocale();
+  const jobs = experience[locale];
+  const titles = sectionTitles[locale];
+
   return (
     <section
       id="experience"
       className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
     >
-      <SectionTitle index="02" title="Experience" />
+      <SectionTitle index="02" title={titles.experience} />
       <div className="space-y-4">
-        {experience.map((job, i) => (
+        {jobs.map((job, i) => (
           <Reveal key={job.company} delay={i * 0.08}>
             <article className="group grid gap-6 rounded-2xl border border-line bg-surface p-8 transition-colors hover:border-accent/50 md:grid-cols-[200px_1fr]">
               <div className="font-mono text-sm text-accent">{job.period}</div>

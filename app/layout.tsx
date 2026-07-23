@@ -13,22 +13,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Badis Mahjoubi — System Engineer & Backend Architect",
+  title: "Badis Mahjoubi — Full-Stack & AI Developer",
   description:
-    "Portfolio of Badis Mahjoubi. Building scalable distributed systems, secure backends, and automation tools. Python, FastAPI, React, Angular, Spring Boot.",
+    "Portfolio of Badis Mahjoubi. Building SaaS platforms, automation systems, and data pipelines. Python, FastAPI, Next.js, Supabase, TypeScript.",
   keywords: [
     "Badis Mahjoubi",
-    "System Engineer",
-    "Backend Architect",
     "Full-Stack Developer",
+    "AI Developer",
     "Python",
     "FastAPI",
-    "Spring Boot",
+    "Next.js",
+    "Supabase",
+    "TypeScript",
   ],
   openGraph: {
-    title: "Badis Mahjoubi — System Engineer & Backend Architect",
+    title: "Badis Mahjoubi — Full-Stack & AI Developer",
     description:
-      "Building scalable distributed systems, secure backends, and automation tools.",
+      "Building SaaS platforms, automation systems, and data pipelines.",
     type: "website",
   },
 };

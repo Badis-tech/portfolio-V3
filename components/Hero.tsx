@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { cv, site } from "@/lib/data";
+import { cv, site, siteI18n } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 
 const HeroScene = dynamic(() => import("./three/HeroScene"), { ssr: false });
 
@@ -21,6 +22,9 @@ const item = {
 };
 
 export default function Hero() {
+  const { locale } = useLocale();
+  const t = siteI18n[locale];
+
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6">
       {/* Background grid + glow */}
@@ -83,16 +87,16 @@ export default function Hero() {
         >
           <div className="max-w-md">
             <h2 className="font-display text-xl font-medium text-fg">
-              {site.role}
+              {t.role}
             </h2>
-            <p className="mt-2 text-muted">{site.tagline}</p>
+            <p className="mt-2 text-muted">{t.tagline}</p>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
               className="rounded-full bg-accent px-7 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-bg transition-transform hover:scale-105"
             >
-              View work
+              {t.viewWork}
             </a>
             <a
               href={site.github}
@@ -116,12 +120,12 @@ export default function Hero() {
                 >
                   <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
                 </svg>
-                CV
+                {t.cvLabel}
               </span>
               <a
                 href={cv.en.href}
                 download
-                aria-label="Download CV in English (PDF)"
+                aria-label={t.downloadCvEn}
                 className="py-3 pl-2 pr-2 transition-colors hover:bg-accent/10 hover:text-accent"
               >
                 {cv.en.label}
@@ -132,7 +136,7 @@ export default function Hero() {
               <a
                 href={cv.fr.href}
                 download
-                aria-label="Télécharger le CV en français (PDF)"
+                aria-label={t.downloadCvFr}
                 className="py-3 pl-2 pr-5 transition-colors hover:bg-accent/10 hover:text-accent"
               >
                 {cv.fr.label}
@@ -153,7 +157,7 @@ export default function Hero() {
           transition={{ repeat: Infinity, duration: 1.8 }}
           className="inline-block"
         >
-          ↓ scroll
+          {t.scrollHint}
         </motion.span>
       </motion.div>
     </section>

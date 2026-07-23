@@ -1,20 +1,26 @@
-import { cv, site } from "@/lib/data";
+"use client";
+
+import { cv, site, contact as contactData, siteI18n } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 import Reveal from "./Reveal";
 
 export default function Contact() {
+  const { locale } = useLocale();
+  const t = contactData[locale];
+  const tSite = siteI18n[locale];
+
   return (
     <section id="contact" className="scroll-mt-24 border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-32 text-center">
         <Reveal>
           <p className="font-mono text-sm text-accent">04 — Contact</p>
           <h2 className="mt-6 font-display text-[clamp(2.4rem,7vw,5.5rem)] font-bold uppercase leading-[1.02] tracking-tight">
-            Let&apos;s build
+            {t.heading[0]}
             <br />
-            <span className="text-outline">something solid.</span>
+            <span className="text-outline">{t.heading[1]}</span>
           </h2>
           <p className="mx-auto mt-6 max-w-md text-muted">
-            Open to system engineering and backend roles, freelance projects,
-            and interesting technical problems.
+            {t.subtitle}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a
@@ -38,14 +44,14 @@ export default function Contact() {
               download
               className="text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
-              ↓ Download CV (English)
+              {tSite.downloadCvEn}
             </a>
             <a
               href={cv.fr.href}
               download
               className="text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
-              ↓ Télécharger le CV (Français)
+              {tSite.downloadCvFr}
             </a>
           </div>
         </Reveal>

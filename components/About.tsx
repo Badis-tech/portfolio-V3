@@ -1,14 +1,22 @@
-import { about, stats, site } from "@/lib/data";
+"use client";
+
+import { about, stats, site, sectionTitles } from "@/lib/data";
+import { useLocale } from "@/lib/i18n";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
 
 export default function About() {
+  const { locale } = useLocale();
+  const paragraphs = about[locale];
+  const s = stats[locale];
+  const titles = sectionTitles[locale];
+
   return (
     <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28">
-      <SectionTitle index="01" title="About" />
+      <SectionTitle index="01" title={titles.about} />
       <div className="grid gap-14 lg:grid-cols-[3fr_2fr]">
         <div className="space-y-6">
-          {about.map((p, i) => (
+          {paragraphs.map((p, i) => (
             <Reveal key={i} delay={i * 0.1}>
               <p className="text-lg leading-relaxed text-muted first:text-xl first:text-fg">
                 {p}
@@ -44,14 +52,14 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08}>
+          {s.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 0.08}>
               <div className="group h-full rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/50">
                 <div className="font-display text-4xl font-bold text-accent sm:text-5xl">
-                  {s.value}
+                  {stat.value}
                 </div>
                 <div className="mt-2 font-mono text-xs uppercase tracking-wider text-muted">
-                  {s.label}
+                  {stat.label}
                 </div>
               </div>
             </Reveal>

@@ -1,3 +1,6 @@
+"use client";
+
+import { I18nProvider } from "@/lib/i18n";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -9,15 +12,17 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
-      <Nav />
-      <Hero />
-      <Marquee />
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
-    </main>
+    <I18nProvider>
+      <main>
+        <Nav />
+        <Hero />
+        <Marquee />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+        <Footer />
+      </main>
+    </I18nProvider>
   );
 }

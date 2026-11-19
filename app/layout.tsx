@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Space_Grotesk, JetBrains_Mono, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({
+const inter = DM_Sans({ subsets: ["latin"], variable: "--font-inter" });
+const bricolage = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-bricolage",
+});
+const arabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-arabic",
 });
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,9 +42,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t!=="dark")t="light";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}`,
+          }}
+        />
+      </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${bricolage.variable} ${jetbrainsMono.variable} ${arabic.variable} antialiased`}
       >
         {children}
       </body>

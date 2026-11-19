@@ -1,4 +1,4 @@
-export type Locale = "en" | "fr";
+export type Locale = "en" | "fr" | "ar";
 
 export const cv = {
   en: { href: "/cv/Badis-Mahjoubi-CV-EN.pdf", label: "EN" },
@@ -38,6 +38,16 @@ export const siteI18n = {
     downloadCvEn: "Télécharger le CV (Anglais)",
     downloadCvFr: "Télécharger le CV (Français)",
   },
+  ar: {
+    role: "مطوّر Full-Stack وذكاء اصطناعي",
+    tagline: "بناء منصات SaaS وأنظمة أتمتة وخطوط معالجة البيانات.",
+    contactCta: "تواصل معي",
+    viewWork: "أعمالي",
+    scrollHint: "↓ مرّر",
+    cvLabel: "السيرة",
+    downloadCvEn: "تحميل السيرة الذاتية (الإنجليزية)",
+    downloadCvFr: "تحميل السيرة الذاتية (الفرنسية)",
+  },
 };
 
 /* ─── stats ─── */
@@ -55,6 +65,12 @@ export const stats = {
     { value: "30K+", label: "Enregistrements scrapés" },
     { value: "3", label: "Langues" },
   ],
+  ar: [
+    { value: "2+", label: "سنوات خبرة" },
+    { value: "10+", label: "مشروعًا منجزًا" },
+    { value: "30K+", label: "سجل تم جمعه" },
+    { value: "3", label: "لغات" },
+  ],
 };
 
 /* ─── about ─── */
@@ -68,26 +84,10 @@ export const about = {
     "Développeur full-stack et backend basé à Tunis, spécialisé en Python/FastAPI, TypeScript/Next.js et Supabase. Je conçois des plateformes SaaS, des systèmes d'automatisation et des pipelines de données — du web scraping à grande échelle à l'intégration de LLM.",
     "Freelance depuis l'obtention de mon diplôme, j'ai livré des produits pour des clients internationaux : automatisation de candidatures sur le marché allemand, architectures de scraping multi-agents et pipelines d'ingestion de données multi-sources avec dédoublonnage et enrichissement.",
   ],
-};
-
-/* ─── nav ─── */
-
-export const navLinks = {
-  en: [
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
+  ar: [
+    "مطوّر Full-Stack وBackend مقيم في تونس، متخصص في Python/FastAPI وTypeScript/Next.js وSupabase. أبني منصات SaaS وأنظمة أتمتة وخطوط معالجة بيانات — من جمع البيانات على نطاق واسع إلى دمج نماذج اللغة الكبيرة.",
+    "أعمل بشكل مستقل منذ تخرّجي، وسلّمت منتجات لعملاء دوليين: أتمتة التقديم على الوظائف في السوق الألماني، وبنى جمع بيانات متعددة الوكلاء، وخطوط استيعاب بيانات من مصادر متعددة مع إزالة التكرار والإثراء.",
   ],
-  fr: [
-    { href: "#about", label: "À propos" },
-    { href: "#experience", label: "Expérience" },
-    { href: "#projects", label: "Projets" },
-  ],
-};
-
-export const sectionTitles = {
-  en: { about: "About", experience: "Experience", projects: "Projects" },
-  fr: { about: "À propos", experience: "Expérience", projects: "Projets" },
 };
 
 /* ─── tech stack ─── */
@@ -190,126 +190,167 @@ export const experience = {
       tags: ["Java", "Spring Boot", "OAuth 2.0"],
     },
   ] as Experience[],
+  ar: [
+    {
+      period: "2025 — الآن",
+      role: "مطوّر مستقل",
+      company: "عمل حر",
+      points: [
+        "تصميم وتسليم منصات SaaS وأنظمة أتمتة للعملاء (Next.js 14 وFastAPI وSupabase).",
+        "تطوير نظام أتمتة التقديم على الوظائف (Playwright وواجهة Bundesagentur für Arbeit).",
+        "بناء بنية متعددة الوكلاء لجمع البيانات على نطاق واسع (~30,000 منشأة).",
+        "إعداد خطوط استيعاب بيانات من مصادر متعددة مع إزالة التكرار والإثراء.",
+      ],
+      tags: ["Next.js", "FastAPI", "Supabase", "Playwright"],
+    },
+    {
+      period: "2024 — 2025",
+      role: "مطوّر Backend",
+      company: "Tontec تونس",
+      points: [
+        "تصميم وتطوير واجهات RESTful باستخدام FastAPI وPostgreSQL.",
+        "دمج نماذج اللغة الكبيرة لأتمتة سير العمل.",
+        "إعداد خطوط بيانات آلية (Supabase Edge Functions).",
+      ],
+      tags: ["FastAPI", "PostgreSQL", "LLM", "Supabase"],
+    },
+    {
+      period: "2023 — 2024",
+      role: "مطوّر بنية تحتية",
+      company: "CODIX تونس",
+      points: [
+        "صيانة وتطوير منصة مالية عالية التوافر.",
+        "العمل على البنية التحتية الخلفية وتحسين الأداء.",
+      ],
+      tags: ["Java", "Spring Boot", "OAuth 2.0"],
+    },
+  ] as Experience[],
 };
 
 /* ─── projects ─── */
 
-export interface Project {
+type L10n = Record<Locale, string>;
+
+export interface ProjectDef {
   title: string;
-  description: string;
+  kind: L10n;
+  description: L10n;
   tags: string[];
-  link?: string;
-  accent: string;
-  icon: "search" | "network" | "chart" | "building" | "invoice" | "bank" | "bot" | "mail";
+  image: string;
+  /** Live app or interactive mockup */
+  demo?: string;
+  /** True when `demo` is a front-end mockup with fictional data */
+  mockup?: boolean;
+  code?: string;
 }
 
-export const projects = {
-  en: [
-    {
-      title: "AusbildungJobs",
-      description:
-        "SaaS job board for German Ausbildung (apprenticeship) positions. Auto-scrapes the Bundesagentur API, provides smart filters, and includes a premium CV/cover-letter service.",
-      tags: ["Next.js", "Supabase", "FastAPI"],
-      accent: "#00ff88",
-      icon: "search" as const,
+export interface Project extends Omit<ProjectDef, "kind" | "description"> {
+  kind: string;
+  description: string;
+}
+
+const projectDefs: ProjectDef[] = [
+  {
+    title: "AusbildungJobs",
+    kind: { en: "SaaS", fr: "SaaS", ar: "SaaS" },
+    description: {
+      en: "Job board for German apprenticeships aggregating 78,000+ live postings from the Bundesagentur API and other sources, with smart filters and a premium CV service.",
+      fr: "Plateforme d'emploi pour les apprentissages en Allemagne : 78 000+ offres agrégées (API Bundesagentur et autres sources), filtres intelligents et service CV premium.",
+      ar: "منصة وظائف للتدريب المهني في ألمانيا تجمع أكثر من 78,000 عرض من واجهة Bundesagentur ومصادر أخرى، مع فلاتر ذكية وخدمة سيرة ذاتية مميزة.",
     },
-    {
-      title: "Jobs Scraper — Germany",
-      description:
-        "Ingestion and auto-application pipeline for the German job market (Pflege / Ausbildung) via the Bundesagentur für Arbeit API. Playwright-based automation.",
-      tags: ["Playwright", "FastAPI", "Supabase"],
-      link: "https://github.com/Badis-tech/visa-hunter",
-      accent: "#00cfff",
-      icon: "bot" as const,
+    tags: ["Next.js", "FastAPI", "Supabase"],
+    image: "/projects/jobs-pipe-line.png",
+    demo: "https://jobs-pipe-line.vercel.app",
+  },
+  {
+    title: "PlastiERP — ERP Plasturgie",
+    kind: { en: "ERP · Final-year project", fr: "ERP · PFE", ar: "ERP · مشروع التخرج" },
+    description: {
+      en: "ERP for a plastic injection factory: production orders, live press monitoring, raw-material and finished-goods stock with low-stock alerts.",
+      fr: "ERP pour une usine d'injection plastique : ordres de fabrication, suivi des presses en temps réel, stock matières premières et produits finis avec alertes.",
+      ar: "نظام ERP لمصنع حقن البلاستيك: أوامر التصنيع، متابعة المكابس في الوقت الفعلي، ومخزون المواد الأولية والمنتجات النهائية مع التنبيهات.",
     },
-    {
-      title: "PyBalancer",
-      description:
-        "An L4/L7 load balancer written in pure Python with zero dependencies. Async event loop, health checks, and round-robin / least-connections strategies — built from raw sockets up.",
-      tags: ["Python", "Asyncio", "Sockets"],
-      link: "https://github.com/Badis-tech/pybalancer",
-      accent: "#ffd700",
-      icon: "network" as const,
+    tags: ["Angular", "Spring Boot", "Java"],
+    image: "/projects/erp-plasturgie.png",
+    demo: "https://erp-plasturgie.vercel.app",
+    mockup: true,
+  },
+  {
+    title: "ERP Grossiste",
+    kind: { en: "Business", fr: "Métier", ar: "أعمال" },
+    description: {
+      en: "Catalogue and stock management for a wholesaler. Stock is an immutable movement ledger kept in sync by Postgres triggers.",
+      fr: "Catalogue et gestion de stock pour un grossiste. Le stock est un livre de mouvements immuable, synchronisé par des triggers Postgres.",
+      ar: "إدارة الكتالوج والمخزون لتاجر جملة. المخزون سجل حركات غير قابل للتعديل تتم مزامنته عبر triggers في Postgres.",
     },
-    {
-      title: "Mini-Prometheus",
-      description:
-        "A lightweight observability agent harvesting OS metrics — CPU, RAM, disk — with a pull-based collection model inspired by Prometheus internals.",
-      tags: ["Python", "Monitoring", "Systems"],
-      link: "https://github.com/Badis-tech/mini-prometheus",
-      accent: "#bf5fff",
-      icon: "chart" as const,
+    tags: ["Next.js", "Supabase", "PostgreSQL"],
+    image: "/projects/erp-grossiste.png",
+    demo: "https://erp-grossiste.vercel.app",
+    mockup: true,
+    code: "https://github.com/Badis-tech/erp-grossiste",
+  },
+  {
+    title: "Visa Hunter",
+    kind: { en: "Automation", fr: "Automatisation", ar: "أتمتة" },
+    description: {
+      en: "Scrapes European job boards and scores each posting's visa-sponsorship probability with NLP keyword analysis; alerts above 80%.",
+      fr: "Scrape les job boards européens et calcule la probabilité de sponsoring visa de chaque offre par analyse NLP ; alerte au-delà de 80 %.",
+      ar: "يجمع عروض العمل الأوروبية ويحسب احتمال رعاية التأشيرة لكل عرض بتحليل الكلمات المفتاحية؛ تنبيه فوق 80%.",
     },
-    {
-      title: "Mass Auto Mail Sender",
-      description:
-        "Mass email sending tool with proxy/VPN rotation and anti-spam handling for outreach campaigns.",
-      tags: ["Python", "VPN", "Proxies"],
-      accent: "#ff2d78",
-      icon: "mail" as const,
+    tags: ["Python", "FastAPI", "Celery"],
+    image: "/projects/visa-hunter.png",
+    demo: "https://visa-hunter.vercel.app",
+    mockup: true,
+    code: "https://github.com/Badis-tech/visa-hunter",
+  },
+  {
+    title: "PyBalancer",
+    kind: { en: "Systems", fr: "Systèmes", ar: "أنظمة" },
+    description: {
+      en: "L4/L7 load balancer in pure Python: async event loop, health checks, round-robin and least-connections. The demo simulates traffic and failover.",
+      fr: "Load balancer L4/L7 en Python pur : boucle async, health checks, round-robin et least-connections. La démo simule trafic et bascule.",
+      ar: "موزّع أحمال L4/L7 بلغة Python الخالصة: حلقة غير متزامنة، فحوصات صحة، round-robin وleast-connections. العرض يحاكي الحركة والتبديل عند العطل.",
     },
-    {
-      title: "ERP — Animal Management",
-      description:
-        "Veterinary tracking, livestock, and inventory management platform for a farming operation.",
-      tags: ["Spring Boot", "MongoDB", "Java"],
-      accent: "#00cfff",
-      icon: "building" as const,
+    tags: ["Python", "Asyncio", "Sockets"],
+    image: "/projects/pybalancer.png",
+    demo: "https://pybalancer.vercel.app",
+    mockup: true,
+  },
+  {
+    title: "Mini-Prometheus",
+    kind: { en: "Systems", fr: "Systèmes", ar: "أنظمة" },
+    description: {
+      en: "Lightweight observability agent collecting CPU, RAM and disk metrics with a pull-based model inspired by Prometheus internals.",
+      fr: "Agent d'observabilité léger collectant CPU, RAM et disque avec un modèle pull inspiré des internals de Prometheus.",
+      ar: "وكيل مراقبة خفيف يجمع مقاييس المعالج والذاكرة والقرص بنموذج سحب مستوحى من Prometheus.",
     },
-  ] as Project[],
-  fr: [
-    {
-      title: "AusbildungJobs",
-      description:
-        "Plateforme SaaS de recherche d'emploi pour les postes d'Ausbildung (apprentissage) en Allemagne. Scraping automatique de l'API Bundesagentur, filtres intelligents et service premium de CV/lettre de motivation.",
-      tags: ["Next.js", "Supabase", "FastAPI"],
-      accent: "#00ff88",
-      icon: "search" as const,
+    tags: ["Python", "Monitoring", "Systems"],
+    image: "/projects/mini-prometheus.png",
+    demo: "https://mini-prometheus.vercel.app",
+    mockup: true,
+  },
+  {
+    title: "AgriERP — Gestion animalière",
+    kind: { en: "Business", fr: "Métier", ar: "أعمال" },
+    description: {
+      en: "Livestock, veterinary and feed-stock management for a farm, with role-based access for manager, vet and worker.",
+      fr: "Gestion du cheptel, suivi vétérinaire et stock d'aliments pour une exploitation agricole, avec contrôle d'accès par rôle.",
+      ar: "إدارة المواشي والمتابعة البيطرية ومخزون الأعلاف لمزرعة، مع صلاحيات حسب الدور.",
     },
-    {
-      title: "Scraper d'emplois — Allemagne",
-      description:
-        "Pipeline d'ingestion et de candidature automatique pour le marché de l'emploi allemand (Pflege / Ausbildung) via l'API Bundesagentur für Arbeit. Automatisation basée sur Playwright.",
-      tags: ["Playwright", "FastAPI", "Supabase"],
-      link: "https://github.com/Badis-tech/visa-hunter",
-      accent: "#00cfff",
-      icon: "bot" as const,
-    },
-    {
-      title: "PyBalancer",
-      description:
-        "Un load balancer L4/L7 écrit en Python pur sans aucune dépendance. Boucle d'événements asynchrone, health checks et stratégies round-robin / least-connections — construit à partir de sockets bruts.",
-      tags: ["Python", "Asyncio", "Sockets"],
-      link: "https://github.com/Badis-tech/pybalancer",
-      accent: "#ffd700",
-      icon: "network" as const,
-    },
-    {
-      title: "Mini-Prometheus",
-      description:
-        "Un agent d'observabilité léger récoltant les métriques OS — CPU, RAM, disque — avec un modèle de collecte pull inspiré des internals de Prometheus.",
-      tags: ["Python", "Monitoring", "Systèmes"],
-      link: "https://github.com/Badis-tech/mini-prometheus",
-      accent: "#bf5fff",
-      icon: "chart" as const,
-    },
-    {
-      title: "Envoi massif d'emails",
-      description:
-        "Outil d'envoi massif d'emails avec rotation de proxy/VPN et gestion anti-spam pour les campagnes de prospection.",
-      tags: ["Python", "VPN", "Proxies"],
-      accent: "#ff2d78",
-      icon: "mail" as const,
-    },
-    {
-      title: "ERP — Gestion animalière",
-      description:
-        "Plateforme de suivi vétérinaire, gestion de bétail et d'inventaire pour une exploitation agricole.",
-      tags: ["Spring Boot", "MongoDB", "Java"],
-      accent: "#00cfff",
-      icon: "building" as const,
-    },
-  ] as Project[],
+    tags: ["Spring Boot", "MongoDB", "Java"],
+    image: "/projects/erp-elevage.png",
+    demo: "https://erp-elevage.vercel.app",
+    mockup: true,
+  },
+];
+
+const localize = (l: Locale): Project[] =>
+  projectDefs.map((p) => ({ ...p, kind: p.kind[l], description: p.description[l] }));
+
+export const projects: Record<Locale, Project[]> = {
+  en: localize("en"),
+  fr: localize("fr"),
+  ar: localize("ar"),
 };
 
 /* ─── contact section ─── */
@@ -324,5 +365,10 @@ export const contact = {
     heading: ["Construisons", "quelque chose de solide."],
     subtitle:
       "Ouvert aux postes full-stack et backend, projets freelance et problèmes techniques intéressants.",
+  },
+  ar: {
+    heading: ["لنبنِ", "شيئًا متينًا."],
+    subtitle:
+      "متاح لوظائف Full-Stack وBackend والمشاريع المستقلة والمشكلات التقنية المثيرة.",
   },
 };

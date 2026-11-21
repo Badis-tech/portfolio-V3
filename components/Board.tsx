@@ -12,8 +12,11 @@ import {
   type Locale,
   type Project,
   techStack,
+  threadId,
+  WALL,
 } from "@/lib/data";
 import { useLocale } from "@/lib/i18n";
+import { CommentCountsPoller, CommentThread, ContactForm, ProjectComments, socialCopy } from "@/components/Social";
 
 const pill =
   "inline-flex min-h-[44px] items-center gap-2 rounded-full border px-4 text-sm transition-colors";
@@ -257,6 +260,7 @@ export default function Board() {
   const t = copy[locale];
   const tSite = siteI18n[locale];
   const c = contactData[locale];
+  const sc = socialCopy[locale];
   const [featured, ...rest] = projects[locale];
   const expList = experience[locale];
   const cvHref = cv[locale].href;
@@ -270,6 +274,7 @@ export default function Board() {
 
   return (
     <div className="min-h-screen bg-bg font-body text-fg">
+      <CommentCountsPoller />
       {/* ─── navigation ─── */}
       <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-4 sm:px-6">
@@ -406,6 +411,7 @@ export default function Board() {
               <p className="text-[15px] leading-relaxed text-copy">{featured.description}</p>
               <p className="font-mono text-xs text-muted">{featured.tags.join(" · ")}</p>
               <Actions p={featured} t={t} />
+              <ProjectComments thread={threadId(featured)} locale={locale} />
             </div>
           </article>
 
@@ -419,6 +425,7 @@ export default function Board() {
                   <p className="font-mono text-[11px] text-muted">{p.tags.join(" · ")}</p>
                 </div>
                 <Actions p={p} t={t} />
+                <ProjectComments thread={threadId(p)} locale={locale} />
               </article>
             ))}
           </div>
@@ -474,28 +481,39 @@ export default function Board() {
             {c.heading[0]} <span className="text-accent">{c.heading[1]}</span>
           </h2>
           <p className="mt-4 max-w-[55ch] text-muted">{c.subtitle}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${site.email}`}
-              className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-accent px-6 font-medium text-on-accent transition-[filter] hover:brightness-110"
-            >
-              <Icon d={ic.mail} />
-              {t.emailMe}
-            </a>
-            <a href={site.linkedin} target="_blank" rel="noreferrer" className={`${ghost} min-h-[48px] px-6`}>
-              LinkedIn
-            </a>
-            <a href={site.github} target="_blank" rel="noreferrer" className={`${ghost} min-h-[48px] px-6`}>
-              GitHub
-            </a>
-            <a href={cvHref} download className={`${ghost} min-h-[48px] px-6`}>
-              <Icon d={ic.down} />
-              CV
-            </a>
+
+          <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:gap-12">
+            <div className="rounded-2xl border border-line bg-tile p-4 sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold">
+                <Icon d={ic.mail} />
+                {sc.formTitle}
+              </h3>
+              <ContactForm locale={locale} />
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap gap-3">
+                <a href={site.linkedin} target="_blank" rel="noreferrer" className={`${ghost} min-h-[48px] px-6`}>
+                  LinkedIn
+                </a>
+                <a href={site.github} target="_blank" rel="noreferrer" className={`${ghost} min-h-[48px] px-6`}>
+                  GitHub
+                </a>
+                <a href={cvHref} download className={`${ghost} min-h-[48px] px-6`}>
+                  <Icon d={ic.down} />
+                  CV
+                </a>
+              </div>
+              <a href={`mailto:${site.email}`} dir="ltr" className="mt-2 w-fit font-mono text-sm text-muted underline-offset-4 hover:text-accent hover:underline">
+                {site.email}
+              </a>
+            </div>
           </div>
-          <p dir="ltr" className="mt-6 font-mono text-sm text-muted">
-            {site.email}
-          </p>
+
+          <div className="mt-12 border-t border-line pt-10">
+            <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{sc.wallTitle}</h3>
+            <p className="mt-2 mb-6 max-w-[62ch] text-muted">{sc.wallSub}</p>
+            <CommentThread thread={WALL} locale={locale} />
+          </div>
         </section>
       </main>
     </div>

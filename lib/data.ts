@@ -354,6 +354,18 @@ export const projects: Record<Locale, Project[]> = {
   ar: localize("ar"),
 };
 
+/* ─── comment threads: one wall in Contact + one per project ─── */
+
+/** Stable thread id for a project, e.g. "/projects/visa-hunter.png" → "visa-hunter" */
+export const threadId = (p: { image: string }) => p.image.replace(/^.*\//, "").replace(/\.\w+$/, "");
+
+export const WALL = "wall";
+
+export const threadIds: string[] = [WALL, ...projectDefs.map(threadId)];
+
+export const threadTitle = (id: string) =>
+  id === WALL ? "Contact wall" : (projectDefs.find((p) => threadId(p) === id)?.title ?? id);
+
 /* ─── contact section ─── */
 
 export const contact = {

@@ -3,6 +3,7 @@ export type Locale = "en" | "fr" | "ar";
 export const cv = {
   en: { href: "/cv/Badis-Mahjoubi-CV-EN.pdf", label: "EN" },
   fr: { href: "/cv/Badis-Mahjoubi-CV-FR.pdf", label: "FR" },
+  ar: { href: "/cv/Badis-Mahjoubi-CV-AR.pdf", label: "AR" },
 };
 
 /* ─── site-level ─── */

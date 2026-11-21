@@ -259,7 +259,7 @@ export default function Board() {
   const c = contactData[locale];
   const [featured, ...rest] = projects[locale];
   const expList = experience[locale];
-  const cvHref = locale === "fr" ? cv.fr.href : cv.en.href;
+  const cvHref = cv[locale].href;
 
   const navItems: [SectionId, string][] = sectionIds.map((id) => [id, t.nav[id]]);
   const ghost = `${pill} border-line hover:border-accent hover:text-accent`;
